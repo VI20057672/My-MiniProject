@@ -1,0 +1,61 @@
+package Project2
+class Video
+{
+	String title;
+	int flag[]=new int[10];
+	int user_rating[]=new int[10];
+	int avg_rating;
+	public void checkOut()
+	{
+		System.out.print("");
+	}
+	public void returned()
+	{
+		System.out.print("");
+	}
+	public userRating(int rating)
+	{
+	}
+}
+class VideoStoreLauncher
+{
+	String video[]=new String[10];
+	int i=0;
+	public void addVideo(String addStr)
+	{
+		video[i]=addStr;
+		i++;
+	}
+	public void checkOutVideo(String chkStr)
+	{
+	}
+	public void returnVideo(String retStr)
+	{
+	}
+	public recieveRating(String str,int rating)
+	{
+	}
+	public listInventory()
+	{
+		for(j=0;j<i;j++)
+		{
+			System.out.print(video[j]);
+		}
+	}
+}
+class VideoStoreLauncher
+{
+public static void main(String arg[])
+{
+VideoStoreLauncher vsl=new VideoStoreLauncher();
+vsl.addVideo("The Matrix");
+vsl.addVideo("God Father ||");
+vsl.addVideo("Star wars Episode iV: A New Hope");
+vsl.recieveRating("The Matrix",4);
+vsl.recieveRating("The Matrix",5);
+vsl.recieveRating("The Matrix",3);
+vsl.checkOutVideo("The Matrix");
+vsl.returnVideo("The Matrix");
+
+}
+}
