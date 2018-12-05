@@ -2,60 +2,184 @@ package Project2
 class Video
 {
 	String title;
-	int flag[]=new int[10];
-	int user_rating[]=new int[10];
-	int avg_rating;
-	public void checkOut()
+	static int flag[]=new int[10];
+	static int user_rating[]=new int[10];
+	int avg_rating=0;
+	int flag0=0;
+	public void checkOut(String vistr)
+	{int p;
+	VideoStore vs=new VideoStore();
+	//System.out.println(flag[0]+""+flag[1]+""+flag[2]);
+	//System.out.print(vs.i);
+	for(p=0;p<vs.i;p++)
 	{
-		System.out.print("");
+	if(vs.video[p].equals(vistr))
+	{
+	flag0=0;
+	//System.out.print("hiii");
+	//System.out.println(flag[p]);
+	break;
+	}
+	else{
+	flag0=1;
+	}
+	}
+	if(flag0==1)
+	{
+		System.out.print("Please input valid data");
+	}
+	else{
+	if(flag[p]==0)
+	{
+	System.out.print("This videos is not avalible");
+	}
+	else{
+	System.out.print("This videos is available");
+	}
+	}
 	}
 	public void returned()
 	{
 		System.out.print("");
 	}
-	public userRating(int rating)
+	public void userRating(String rtStr)
 	{
+	VideoStore vs=new VideoStore();
+	int q;
+	for(q=0;q<vs.i;q++)
+	{
+	if(vs.video[q].equals(rtStr))
+	{
+	flag0=0;
+	//System.out.print("hiii");
+	System.out.println(user_rating[q]);
+	break;
+	}
+	else{
+	flag0=1;
+	}
+	}
+	if(flag0==1)
+	{
+		System.out.print("Please input valid data");
+	}
+	}
+	public void avgRating()
+	{
+	VideoStore vs=new VideoStore();
+	for(int l=0;l<vs.i;l++)
+	{
+	avg_rating=avg_rating+user_rating[l];
+	System.out.println(avg_rating/vs.i);
+	}
 	}
 }
-class VideoStoreLauncher
+class VideoStore extends Video
 {
-	String video[]=new String[10];
-	int i=0;
+	static String video[]=new String[10];
+	static int i=0;
 	public void addVideo(String addStr)
 	{
 		video[i]=addStr;
+		flag[i]=1;
 		i++;
+		
+		//System.out.println(video[1]);
 	}
 	public void checkOutVideo(String chkStr)
 	{
+	int j;
+	int m=0;
+	int flag1=0;
+	for(j=0;j<i;j++)
+	{
+	if(video[j].equals(chkStr))
+	{
+	flag[j]=0;
+	flag1=0;
+	break;
+	}
+	else
+	{
+	flag1=1;
+	}
+	}
+	if(flag1==1)
+	{
+	System.out.println("This videos is not available");
+	}
+	else{
+	
+	System.out.println("This videos is successfully rented or checkOut");
+	}
 	}
 	public void returnVideo(String retStr)
 	{
-	}
-	public recieveRating(String str,int rating)
+	int k;
+	int n=0;
+	int flag2=0;
+	for(k=0;k<i;k++)
 	{
-	}
-	public listInventory()
+	if(video[k].equals(retStr))
 	{
+	n=k;
+	flag2=0;
+	break;
+	}
+	else
+	{
+	flag2=1;
+	}
+	}
+	if(flag2==1)
+	{
+	System.out.println("This is not videos that You Borrowed");
+	}
+	else{
+	flag[n]=1;
+	System.out.println("This videos is successfully returned");
+	}
+	}
+	public  void recieveRating(String str,int rating)
+	{
+	int l;
+	for(l=0;l<i;l++)
+	{
+	if(video[l].equals(str))
+	{
+	user_rating[l]=rating;
+	break;
+	}
+	}
+	}
+	public void listInventory()
+	{int j;
 		for(j=0;j<i;j++)
 		{
 			System.out.print(video[j]);
+			//System.out.print(flag[j]);
 		}
+		System.out.println("");
 	}
 }
 class VideoStoreLauncher
 {
 public static void main(String arg[])
 {
-VideoStoreLauncher vsl=new VideoStoreLauncher();
+VideoStore vsl=new VideoStore();
 vsl.addVideo("The Matrix");
 vsl.addVideo("God Father ||");
 vsl.addVideo("Star wars Episode iV: A New Hope");
 vsl.recieveRating("The Matrix",4);
-vsl.recieveRating("The Matrix",5);
-vsl.recieveRating("The Matrix",3);
-vsl.checkOutVideo("The Matrix");
-vsl.returnVideo("The Matrix");
+vsl.recieveRating("God Father ||",5);
+vsl.recieveRating("Star wars Episode iV: A New Hope",3);
+vsl.checkOutVideo("God Father ||");
+vsl.returnVideo("God Father ||");
+vsl.listInventory();
+Video vi=new Video();
+vi.checkOut("God Father |");
+vi.userRating("The Matrix");
+vi.avgRating();
 
 }
 }
